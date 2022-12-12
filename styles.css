@@ -1,0 +1,71 @@
+.container{
+    width: 600px;
+    height: 600px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: rgb(0, 0, 0);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    justify-content: center;
+}
+
+.item-button{
+    background-color: aquamarine;
+    margin: 2px;
+    border: none;
+}
+
+.x{
+    background-color: aquamarine;
+    background-image: url("x.png");
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 2px;
+    border: none;
+}
+
+.o{
+    background-color: aquamarine;
+    background-image: url("circle.png");
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 2px;
+    border: none;
+}
+
+.no-reset{
+    opacity: 0;
+}
+
+.reset{
+    margin: 1fr;
+    font-size: 24px;
+    color:white;
+    font-weight: bold;
+    border: none;
+    background-color: rgb(56, 56, 56);
+    height: 100px;
+    width: 200px;
+    display: block;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    transition: ease 1s;
+}
+
+#victory{
+    color: rgb(8, 156, 8);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.crossed{
+    background-color: chartreuse;
+    transition: ease background-color 1s;
+}

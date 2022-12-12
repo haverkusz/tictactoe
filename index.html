@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div id="victory">Kezdődjön a játék!</div>
+        <div class="container">
+            <button id="0" class="item-button"></button>
+            <button id="1" class="item-button"></button>
+            <button id="2" class="item-button"></button>
+            <button id="3" class="item-button"></button>
+            <button id="4" class="item-button"></button>
+            <button id="5" class="item-button"></button>
+            <button id="6" class="item-button"></button>
+            <button id="7" class="item-button"></button>
+            <button id="8" class="item-button"></button>
+        </div>
+        <button id="reset" class="no-reset">ÚJRA</button>
+        <script>
+            var playable = true;
+            var boolean = false;
+            var counter = 0;
+            var markings = {}
+            document.getElementById("reset").addEventListener("click", resetAll)
+            const buttons = document.getElementsByClassName("item-button")
+            for (var i = 0; i < buttons.length; i++){
+                buttons[i].addEventListener("click", clickEvent);
+            }
+
+            function clickEvent(){
+                if (!playable) return;
+                if (this.classList.length > 1) return;
+                if (boolean){
+                    this.classList.add("x")
+                    markings[this.id] = "x";
+                    boolean = false;
+                } else{
+                    this.classList.add("o")
+                    markings[this.id] = "o";
+                    boolean = true;
+                }
+                counter++;
+                
+                checkGameEnd()
+            }
+
+            function checkGameEnd(){
+                if(markings[1] != undefined && markings[1] === markings[0] && markings[0] === markings[2]){
+                    buttons[0].classList.add("crossed")
+                    buttons[1].classList.add("crossed")
+                    buttons[2].classList.add("crossed")
+                    document.getElementById("victory").innerHTML = markings[0].toUpperCase() + " nyert!";
+                    playable = false;
+                    enableReset();
+
+                }
+                else if(markings[4] != undefined && markings[4] === markings[3] && markings[3] === markings[5] ){
+                    buttons[4].classList.add("crossed")
+                    buttons[3].classList.add("crossed")
+                    buttons[5].classList.add("crossed")
+                    document.getElementById("victory").innerHTML = markings[4].toUpperCase() + " nyert!";
+                    playable = false;
+                    enableReset();
+                }
+                else if(markings[7] != undefined && markings[7] === markings[6] && markings[6] === markings[8] ){
+                    buttons[7].classList.add("crossed")
+                    buttons[6].classList.add("crossed")
+                    buttons[8].classList.add("crossed")
+                    document.getElementById("victory").innerHTML = markings[7].toUpperCase() + " nyert!";
+                    playable = false;
+                    enableReset();
+                }
+
+                else if(markings[3] != undefined && markings[3] === markings[0] && markings[0] === markings[6] ){
+                    buttons[3].classList.add("crossed")
+                    buttons[0].classList.add("crossed")
+                    buttons[6].classList.add("crossed")
+                    document.getElementById("victory").innerHTML = markings[3].toUpperCase() + " nyert!";
+                    playable = false;
+                    enableReset();
+                }
+                else if(markings[4] != undefined && markings[4] === markings[1] && markings[1] === markings[7] ){
+                    buttons[4].classList.add("crossed")
+                    buttons[1].classList.add("crossed")
+                    buttons[7].classList.add("crossed")
+                    document.getElementById("victory").innerHTML = markings[4].toUpperCase() + " nyert!";
+                    playable = false;
+                    enableReset();
+                }
+                else if(markings[5] != undefined && markings[5] === markings[2] && markings[2] === markings[8] ){
+                    buttons[5].classList.add("crossed")
+                    buttons[2].classList.add("crossed")
+                    buttons[8].classList.add("crossed")
+                    document.getElementById("victory").innerHTML = markings[5].toUpperCase() + " nyert!";
+                    playable = false;
+                    enableReset();
+                }
+
+                else if(markings[0] != undefined && markings[0] === markings[4] && markings[4] === markings[8] ){
+                    buttons[0].classList.add("crossed")
+                    buttons[4].classList.add("crossed")
+                    buttons[8].classList.add("crossed")
+                    document.getElementById("victory").innerHTML = markings[0].toUpperCase() + " nyert!";
+                    playable = false;
+                    enableReset();
+                }
+                else if(markings[4] != undefined && markings[6] === markings[4] && markings[4] === markings[2] ){
+                    buttons[4].classList.add("crossed")
+                    buttons[6].classList.add("crossed")
+                    buttons[2].classList.add("crossed")
+                    document.getElementById("victory").innerHTML = markings[4].toUpperCase() + " nyert!";
+                    playable = false;
+                    enableReset();
+                }
+
+                if(counter > 8){
+                    enableReset();
+                }
+            }
+
+            function enableReset(){
+                document.getElementById("reset").classList.add("reset");
+                document.getElementById("reset").classList.remove("no-reset");
+            }
+
+            function resetAll(){
+                playable = true;
+                boolean = false;
+                counter = 0;
+                markings = {}
+                for (var i = 0; i < buttons.length; i++){
+                    buttons[i].classList.remove("o");
+                    buttons[i].classList.remove("x");
+                    buttons[i].classList.remove("crossed");
+                }
+                document.getElementById("reset").classList.add("no-reset");
+                document.getElementById("reset").classList.remove("reset");
+                document.getElementById("victory").innerHTML = "Kezdődjön újra a játék!";
+            }
+        </script>
+    </body>
+</html>
